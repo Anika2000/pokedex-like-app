@@ -5,5 +5,6 @@ export default function Home() {
     <>
     <div>Home Component</div>
     </>
+    //call the cards component here
   );
 }
