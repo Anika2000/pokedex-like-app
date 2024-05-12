@@ -11,6 +11,18 @@ const Header = () => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const inputRef = useRef(null);
 
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+          if (inputRef.current && !inputRef.current.contains(e.target)) {
+            setIsSearchOpen(false);
+          }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+          document.removeEventListener('mousedown', handleClickOutside);
+        };
+      }, []);
+
   useEffect(() => {
     if (isSearchOpen && inputRef.current) {
       inputRef.current.focus();
