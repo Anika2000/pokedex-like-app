@@ -4,6 +4,10 @@ import PokeCard from './PokeCard'
 import { useState } from 'react'
 import Spinner from './Spinner'
 
+
+import { GrCaretNext, GrCaretPrevious } from "react-icons/gr";
+import PrevNext from './PrevNext'
+
 const Cards = () => {
   const [pokemonList, setPokemonList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,21 +32,37 @@ const Cards = () => {
     fetchPokemons()
   }, [currentPageUrl])
 
+  const handleNext = () => {
+    setCurrentPageUrl(nextUrl)
+    setLoading(true)  
+  }
+
+  const handlePrev = () => {
+    setCurrentPageUrl(prevUrl)
+    setLoading(true)
+  }
+
 
   return (
+    <>
     <div className="grid grid-cols-3 gap-4">
     {loading ?  (
       <Spinner loading={loading}/>
     ) : (
     <>
-    {pokemonList.map((pokemon) => {
+    {pokemonList.map((pokemon, index) => {
       const url = pokemon.url;
-      const id = parseInt(url.split('/')[url.length - 2]);
-      return <PokeCard key={id} pokemon={pokemon}/>
+      const idArr = url.split('/');
+      const id = idArr[idArr.length - 2];
+      return <PokeCard key={parseInt(id)} pokemon={pokemon}/>
     })}
     </>)}
     </div>
-    
+    <PrevNext
+    prevPage={prevUrl ? handleNext : null} 
+    nextPage={nextUrl ? handlePrev : null}
+    />   
+  </>
   )
 }
 
