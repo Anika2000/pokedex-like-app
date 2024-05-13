@@ -2,7 +2,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div>Contact page coming soon!</div>
+    <div>does this work?????heloooo please work specific pokemon</div>
   )
 }
 

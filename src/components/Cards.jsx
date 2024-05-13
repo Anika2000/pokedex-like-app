@@ -46,13 +46,13 @@ const Cards = () => {
       <Spinner loading={loading}/>
     ) : (
     <>
-    {pokemonList.map((pokemon, index) => {
+    {pokemonList.map((pokemon) => {
       const url = pokemon.url;
       const idArr = url.split('/');
       const id = idArr[idArr.length - 2];
       return <PokeCard key={parseInt(id)} pokemon={pokemon} id={parseInt(id)}/>
     })}
-    <div className="bg-red-500 h-auto flex flex-col items-center justify-center p-5">Click Me!</div>
+    <div className="bg-red-500 h-auto flex flex-col items-center justify-center p-5 cursor-pointer">Click Me!</div>
     </>)}
     </div>
     <PrevNext
