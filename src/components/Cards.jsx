@@ -3,9 +3,6 @@ import React, { useEffect } from 'react'
 import PokeCard from './PokeCard'
 import { useState } from 'react'
 import Spinner from './Spinner'
-
-
-import { GrCaretNext, GrCaretPrevious } from "react-icons/gr";
 import PrevNext from './PrevNext'
 
 const Cards = () => {
@@ -19,7 +16,6 @@ const Cards = () => {
     setLoading(true);
     const fetchPokemons = async () => {
       try {
-        console.log(currentPageUrl)
         const response = await fetch(currentPageUrl)
         const data = await response.json()
         setPokemonList(data.results)
@@ -54,8 +50,9 @@ const Cards = () => {
       const url = pokemon.url;
       const idArr = url.split('/');
       const id = idArr[idArr.length - 2];
-      return <PokeCard key={parseInt(id)} pokemon={pokemon}/>
+      return <PokeCard key={parseInt(id)} pokemon={pokemon} id={parseInt(id)}/>
     })}
+    <div className="bg-red-500 h-auto flex flex-col items-center justify-center p-5">Click Me!</div>
     </>)}
     </div>
     <PrevNext
