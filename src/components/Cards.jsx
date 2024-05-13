@@ -11,13 +11,15 @@ import PrevNext from './PrevNext'
 const Cards = () => {
   const [pokemonList, setPokemonList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [nextUrl, setNextUrl] = useState('');
-  const [prevUrl, setPrevUrl] = useState('');
+  const [nextUrl, setNextUrl] = useState(null);
+  const [prevUrl, setPrevUrl] = useState(null);
   const [currentPageUrl, setCurrentPageUrl] = useState('https://pokeapi.co/api/v2/pokemon')
   
   useEffect(() => {
+    setLoading(true);
     const fetchPokemons = async () => {
       try {
+        console.log(currentPageUrl)
         const response = await fetch(currentPageUrl)
         const data = await response.json()
         setPokemonList(data.results)
@@ -34,12 +36,10 @@ const Cards = () => {
 
   const handleNext = () => {
     setCurrentPageUrl(nextUrl)
-    setLoading(true)  
   }
 
   const handlePrev = () => {
     setCurrentPageUrl(prevUrl)
-    setLoading(true)
   }
 
 
@@ -59,8 +59,8 @@ const Cards = () => {
     </>)}
     </div>
     <PrevNext
-    prevPage={prevUrl ? handleNext : null} 
-    nextPage={nextUrl ? handlePrev : null}
+    prevPage={prevUrl ? handlePrev : null} 
+    nextPage={nextUrl ? handleNext : null}
     />   
   </>
   )
