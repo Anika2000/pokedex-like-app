@@ -1,9 +1,9 @@
-import Image from "next/image";
+import Feed from "@/components/Feed";
 
 export default function Home() {
   return (
     <>
-    <div>Home Component</div>
+    <Feed />
     </>
     //call the cards component here
   );
